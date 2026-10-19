@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Survive Chaos</title>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<canvas id="c"></canvas>
+<div id="hud"><div id="xpb"><div id="xpf"></div></div>
+<div class="top"><div class="pl"><div class="hp"><div id="hpf"></div><span id="hpt"></span></div><div class="lvl" id="lv"></div><div class="hp hp2" id="hp2w"><div id="hpf2"></div><span id="hpt2"></span></div><div id="gc"></div></div></div>
+<div class="mid"><div id="tm">20:00</div><div id="kl"></div></div><button id="pz" aria-label="Pausar"></button>
+<div id="ms"></div><div id="dvb"><div class="dvn">DEV</div><div class="dvbi" id="dvbi"></div><div class="dvbars"><div style="flex:1"><b id="dv1"></b></div><div style="flex:2"><b id="dv2"></b></div><div style="flex:4"><b id="dv3"></b></div></div></div><div id="boss"><span id="bn"></span><div><b id="bf"></b></div></div>
+<button id="dash"><i id="dsh"></i><b>💨</b><small>DASH</small></button><button id="dash1"><b>💨</b><small>DASH</small></button><button id="ult1"><b>⚡</b><small>ULT</small></button><button id="ult"><i id="uli"></i><b>⚡</b><small>ULT</small></button></div>
+<button id="qa">ADM</button><div id="ban"></div>
+<div class="scr on" id="menu"><div class="mt"><div class="logo-e"><img src="sprites/ui/ui_caveira.png" alt=""><img src="sprites/ui/arma_pistola.png" alt=""><img src="sprites/ui/melhoria_aura_de_fogo.png" alt=""></div><h1 id="logo">SURVIVE<br>CHAOS</h1><p class="sub">Sobreviva até o amanhecer contra hordas, bosses e o caos.</p></div>
+<div class="mb"><div class="prof"><span></span><input id="nick" maxlength="14" placeholder="Seu nick" autocomplete="off" spellcheck="false"></div><div class="row2"><div class="coin" id="mc"></div><div class="sub" id="bst"></div></div><div class="stack"><button class="btn" id="play">Jogar</button><button class="btn g" id="shopb">Skins</button><div class="duo"><button class="btn g" id="achb">Conquistas</button><button class="btn g" id="histb">Histórico</button></div></div><div class="row"><button class="btn g s" id="snd"></button><button class="btn g s" id="trk"></button></div><div class="ft">Toque · Mouse e teclado · Controle</div></div></div>
+<div class="scr" id="setup"></div>
+<div class="scr" id="intro"><div class="panel"><div id="intro_e" style="font-size:64px;animation:bob 2.4s ease-in-out infinite"></div><h2 id="intro_n" style="justify-content:center;text-align:center"></h2><div class="sub" id="intro_d" style="text-align:center;font-size:15px;line-height:1.5"></div><div class="chips" id="intro_c"></div><div class="sub" id="intro_g"></div><button class="btn" id="intro_b">▶ Começar</button></div></div>
+<div class="scr" id="ach"><div class="panel lst"><h2>Conquistas</h2><div class="prog"><div id="ach_b"></div><span id="ach_c"></span></div><div class="tabs"><button class="opt on" data-f="0">Todas</button><button class="opt" data-f="1">Desbloqueadas</button><button class="opt" data-f="2">Bloqueadas</button></div><div class="lstb" id="ach_l"></div><button class="btn g s" id="ach_back">← Voltar</button></div></div>
+<div class="scr" id="hist"><div class="panel lst"><h2>Histórico</h2><div class="sub" id="hist_s"></div><div class="lstb" id="hist_l"></div><div class="row"><button class="btn g s" id="hist_clear">🗑️ Limpar</button><button class="btn g s" id="hist_back">← Voltar</button></div></div></div>
+<div id="toast"></div>
+<div id="devI"><div class="dvk">⚠ ALERTA: DEUS DETECTADO ⚠</div><div class="dvt" data-t="DEV">DEV</div><div class="dvs" id="devT"></div></div>
+<div class="scr" id="shop"><h2>Skins</h2><div class="coin" id="sc"></div><div class="grid" id="sg"></div><button class="btn g" id="sback">Voltar</button></div>
+<div class="scr" id="cards"><h2>Subiu de nível!</h2><div class="sub">Escolha uma melhoria</div><div class="cards" id="cl"></div><button class="btn g s" id="rr">Rerrolar</button></div>
+<div class="scr" id="pause"><div class="panel"><h2>Pausado</h2><div class="stack"><button class="btn" id="resume">▶ Continuar</button><button class="btn g" id="quit">Sair da partida</button></div></div></div>
+<div class="scr" id="over"><div class="panel"><div id="skl" style="font-size:64px;animation:wob 1.8s infinite">💀</div><h1 id="ot" style="font-size:clamp(28px,7vmin,48px)"></h1><div class="dm" id="om"></div><div id="os" style="width:100%"></div><div class="stack"><button class="btn" id="again">▶ Jogar de novo</button><button class="btn g" id="home">Menu</button></div></div></div>
+<div class="scr" id="cls"></div>
+<div class="scr" id="adm"><div class="console"><div class="ctitle"><span class="led"></span><span>ADMIN // PAINEL</span><button class="btn s" id="aclose">Fechar</button></div><div class="cbody"><div id="pinb" class="row"><input id="pin" type="password" inputmode="numeric" placeholder="PIN"><button class="btn s" id="pok">Entrar</button></div>
+<div id="apan" style="display:none">
+<div id="amenu"><h2>Menu</h2><button class="btn" id="m_u">Upgrades</button><button class="btn" id="m_a">Admin abuse</button><button class="btn" id="m_c">Configurações</button></div>
+<div class="asub" id="s_u"><h2>Upgrades</h2><div class="grid" id="ag_u"></div><div class="sub">Permanentes (só admin, ficam salvos)</div><div class="grid" id="ag_p"></div><div class="row"><select id="aup"></select><button class="btn s" id="aug">Dar upgrade</button></div><button class="btn g s" id="b_u">Voltar</button></div>
+<div class="asub" id="s_a"><h2>Admin abuse</h2><div class="sub">Os eventos não têm tempo: clique de novo para desligar, ou use o botão abaixo.</div><button class="btn" id="stopall">Parar todos os eventos</button><div class="row"><select id="asp"></select><button class="btn s" id="as1">Spawnar 1</button><button class="btn s" id="as10">Spawnar 10</button></div><div class="grid" id="ag_a"></div><button class="btn g s" id="b_a">Voltar</button></div>
+<div class="asub" id="s_c"><h2>Configurações</h2><div class="grid" id="ag_c"></div><button class="btn g s" id="b_c">Voltar</button></div>
+</div></div></div></div>
+<script src="sprites/atlas.js"></script><script src="sprites.js"></script><script src="game.js"></script><script src="classes.js"></script><script src="dev.js"></script><script src="audio.js"></script><script src="ui.js"></script></body></html>
