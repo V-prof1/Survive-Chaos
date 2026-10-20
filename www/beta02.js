@@ -2,6 +2,18 @@
 (() => {
   const B02 = { drain: 24, regen: 18, regenDelay: .7, dashCost: 25, sprintMul: 1.45 };
   const byId = id => document.getElementById(id);
+
+  if (!document.querySelector('link[href="beta02.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'beta02.css';
+    document.head.appendChild(link);
+  }
+  const hud = byId('hud');
+  if (hud && !byId('stam')) {
+    hud.insertAdjacentHTML('beforeend', '<div id="stam"><span>STAMINA</span><div><b id="stf"></b></div></div><div id="stam2"><span>P2 STAMINA</span><div><b id="stf2"></b></div></div><button id="run"><b>🏃</b><small>RUN</small></button><button id="run1"><b>🏃</b><small>RUN</small></button>');
+  }
+
   const initStam = q => {
     if (!q) return;
     if (q.stam == null) q.stam = 100;
