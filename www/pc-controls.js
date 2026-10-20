@@ -5,7 +5,6 @@
     if (typeof st === 'undefined' || st !== 'play' || e.repeat) return;
     if (e.code !== 'KeyQ' && e.code !== 'KeyE') return;
 
-    // Bloqueia os atalhos antigos do game.js (Espaço/Q) somente para Q/E.
     e.preventDefault();
     e.stopImmediatePropagation();
 
@@ -21,4 +20,10 @@
     if (e.code === 'KeyQ') dash();
     else fireUlt();
   }, true);
+
+  // Carrega sprint, stamina e efeitos da Beta 0.2 sem duplicar o código principal.
+  const beta = document.createElement('script');
+  beta.src = 'beta02.js';
+  beta.defer = true;
+  document.body.appendChild(beta);
 })();
