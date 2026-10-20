@@ -4,6 +4,11 @@
   const add=(el,cls)=>el&&el.classList.add(cls);
   const pulse=el=>{if(!el)return;el.classList.remove('sc-action-pop');void el.offsetWidth;el.classList.add('sc-action-pop');setTimeout(()=>el.classList.remove('sc-action-pop'),260)};
 
+  // Corrige os ícones duplicados: mantém somente o ícone original do jogo.
+  const iconFix=document.createElement('style');
+  iconFix.textContent='#dash::before,#dash1::before,#ult::before,#ult1::before{content:none!important;display:none!important}';
+  document.head.appendChild(iconFix);
+
   // Versão visível no menu
   const menu=$('menu');
   if(menu&&!menu.querySelector('.sc-beta-badge')){
