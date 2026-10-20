@@ -1,0 +1,16 @@
+/* Survive Chaos Beta 0.2 — sprint/stamina */
+#run,#run1{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:66px;height:66px;border-radius:50%;background:var(--pn);color:var(--tx);border:4px solid var(--edge);box-shadow:inset 0 0 0 3px #7d6cff,0 5px 0 rgba(0,0,0,.5);pointer-events:auto;overflow:hidden;font-family:var(--bd);font-weight:800;touch-action:none;z-index:4}
+#run{right:calc(29px + env(safe-area-inset-right,0));bottom:calc(120px + env(safe-area-inset-bottom,0))}
+#run1{left:calc(29px + env(safe-area-inset-left,0));bottom:calc(120px + env(safe-area-inset-bottom,0));display:none}
+#run b,#run1 b{font-size:24px;line-height:1}#run small,#run1 small{font:800 10px var(--bd);letter-spacing:.08em}
+#run.on,#run1.on{transform:translateY(3px) scale(.96);box-shadow:inset 0 0 0 3px var(--c),0 2px 0 rgba(0,0,0,.5);background:#302965}
+#stam,#stam2{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(22px + env(safe-area-inset-bottom,0));width:min(260px,34vw);pointer-events:none;text-align:center;z-index:4}
+#stam2{bottom:calc(54px + env(safe-area-inset-bottom,0));display:none}
+#stam span,#stam2 span{display:block;margin-bottom:3px;color:#e8e4ff;text-shadow:0 2px 0 #000;font:800 10px var(--bd);letter-spacing:.14em}
+#stam>div,#stam2>div{height:14px;background:var(--edge);border:3px solid var(--edge);border-radius:99px;box-shadow:0 0 0 2px var(--ln);overflow:hidden}
+#stam b,#stam2 b{display:block;height:100%;width:100%;border-radius:99px;background:linear-gradient(90deg,#6d5cff,#3fe0c5);transition:width .08s linear}
+#stam.low b,#stam2.low b{background:linear-gradient(90deg,#ff5a3c,#ffcf3f)}
+#betaDanger{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity .08s linear;background:radial-gradient(circle at 50% 50%,transparent 38%,rgba(120,25,210,.12) 58%,rgba(135,35,230,.78) 100%);box-shadow:inset 0 0 70px rgba(160,40,255,.45)}
+#betaDanger.dev{background:radial-gradient(circle at 50% 50%,transparent 34%,rgba(170,0,35,.14) 56%,rgba(255,25,55,.85) 100%);box-shadow:inset 0 0 80px rgba(255,20,45,.62)}
+@media(max-width:700px){#stam,#stam2{width:min(230px,38vw)}}
+@media(max-height:520px){#run,#run1{width:58px;height:58px}#run{right:calc(33px + env(safe-area-inset-right,0));bottom:calc(112px + env(safe-area-inset-bottom,0))}#run1{left:calc(33px + env(safe-area-inset-left,0));bottom:calc(112px + env(safe-area-inset-bottom,0))}#stam{bottom:calc(14px + env(safe-area-inset-bottom,0))}#stam2{bottom:calc(44px + env(safe-area-inset-bottom,0))}}
