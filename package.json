@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "Survive Chaos - Android wrapper built with Capacitor",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "android:add": "npx cap add android",
     "android:sync": "npx cap sync android",
