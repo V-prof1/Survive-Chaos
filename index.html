@@ -2,26 +2,22 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <title>Survive Chaos</title>
-  <meta http-equiv="refresh" content="0; url=./www/">
+  <meta name="theme-color" content="#171233">
   <style>
-    html,body{margin:0;min-height:100%;background:#171233;color:#fff6e2;font-family:Arial,sans-serif}
-    body{display:grid;place-items:center;text-align:center;padding:24px}
-    a{color:#ffcf3f;font-weight:700}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#171233}
+    iframe{display:block;width:100%;height:100%;border:0;background:#171233}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Survive Chaos</h1>
-    <p>Abrindo o jogo...</p>
-    <p><a href="./www/">Toque aqui se o jogo não abrir automaticamente.</a></p>
-  </main>
+  <iframe id="game" src="./www/" title="Survive Chaos" allow="fullscreen; autoplay; gamepad" referrerpolicy="same-origin"></iframe>
   <script>
-    const target = new URL('./www/', location.href);
-    target.search = location.search;
-    target.hash = location.hash;
-    location.replace(target.href);
+    const f=document.getElementById('game');
+    const u=new URL('./www/',location.href);
+    u.search=location.search;
+    u.hash=location.hash;
+    f.src=u.href;
   </script>
 </body>
 </html>
