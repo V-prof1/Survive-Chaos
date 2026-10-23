@@ -15,7 +15,8 @@
   <script>
     const f=document.getElementById('game');
     const u=new URL('./www/',location.href);
-    u.search=location.search;
+    for(const [k,v] of new URLSearchParams(location.search))u.searchParams.set(k,v);
+    u.searchParams.set('build','web-parity-2');
     u.hash=location.hash;
     f.src=u.href;
   </script>
