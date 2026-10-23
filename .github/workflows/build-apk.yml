@@ -6,6 +6,7 @@ on:
     branches: [ main, master ]
     paths:
       - 'www/**'
+      - 'tests/**'
       - 'package.json'
       - 'capacitor.config.json'
       - '.github/workflows/build-apk.yml'
@@ -27,6 +28,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Validar paridade Web
+        shell: bash
+        run: |
+          node --check www/web-core-loader.js
+          node --check www/web-dev-loader.js
+          node --check www/web-parity.js
+          node tests/web-parity.spec.cjs
 
       - name: Configurar Java 21
         uses: actions/setup-java@v5
@@ -88,7 +97,6 @@ jobs:
                   px[x, y] = (r, g, b, 255)
 
           draw = ImageDraw.Draw(bg)
-          # Moldura interna dourada, longe da área de corte dos ícones adaptativos.
           draw.rounded_rectangle((118,118,906,906), radius=190, outline=(255,207,63,255), width=26)
           draw.rounded_rectangle((150,150,874,874), radius=165, outline=(255,90,60,110), width=10)
 
@@ -96,7 +104,6 @@ jobs:
           scale = min(target/src.width, target/src.height)
           icon = src.resize((max(1,int(src.width*scale)), max(1,int(src.height*scale))), Image.Resampling.NEAREST)
 
-          # Sombra suave atrás da caveira.
           shadow_alpha = icon.getchannel('A').filter(ImageFilter.GaussianBlur(24))
           shadow = Image.new('RGBA', icon.size, (0,0,0,0))
           shadow.putalpha(shadow_alpha.point(lambda v: int(v*0.72)))
@@ -105,7 +112,6 @@ jobs:
           bg.alpha_composite(shadow, (ix+18, iy+24))
           bg.alpha_composite(icon, (ix, iy))
 
-          # Pequenos acentos laterais para dar leitura mesmo em ícones pequenos.
           draw = ImageDraw.Draw(bg)
           draw.polygon([(184,506),(255,466),(236,518),(292,546),(215,558)], fill=(63,224,197,220))
           draw.polygon([(840,506),(769,466),(788,518),(732,546),(809,558)], fill=(255,90,60,220))
