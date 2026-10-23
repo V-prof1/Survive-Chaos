@@ -24,6 +24,10 @@ const JS=[
 ];
 window.SC_WEB_PARITY={version:'2.0',revision:REV,status:'loading',loaded:[],failed:[]};
 
+const play=document.getElementById('play');
+const playText=play?play.textContent:'Jogar';
+if(play){play.disabled=true;play.textContent='Carregando atualização…';play.dataset.parityLoading='1'}
+
 for(const file of CSS){
   const l=document.createElement('link');
   l.rel='stylesheet';l.href=BASE+file;
@@ -54,11 +58,12 @@ function relabel(){
   relabel();
   const mo=new MutationObserver(relabel);mo.observe(document.body,{childList:true,subtree:true});
   setTimeout(()=>mo.disconnect(),30000);
+  if(play){play.disabled=false;play.textContent=playText;delete play.dataset.parityLoading}
   try{
     const t=document.getElementById('toast');
-    if(t&&SC_WEB_PARITY.status==='ready'){
-      t.textContent='WEB ATUALIZADO · REBALANCE 2.0';
-      t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)
+    if(t){
+      t.textContent=SC_WEB_PARITY.status==='ready'?'WEB ATUALIZADO · REBALANCE 2.0':'ATUALIZAÇÃO PARCIAL · RECARREGUE A PÁGINA';
+      t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)
     }
   }catch(_){ }
   console.log('[Web Parity] Sistemas carregados:',SC_WEB_PARITY.loaded.length,'falhas:',SC_WEB_PARITY.failed);
