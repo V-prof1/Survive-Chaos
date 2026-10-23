@@ -1,5 +1,6 @@
 const fs=require('fs');
 const assert=require('assert');
+const cp=require('child_process');
 const read=p=>fs.readFileSync(p,'utf8');
 const game=read('www/game.js');
 const dev=read('www/dev.js');
@@ -7,6 +8,9 @@ const index=read('www/index.html');
 const core=read('www/web-core-loader.js');
 const devLoader=read('www/web-dev-loader.js');
 const parity=read('www/web-parity.js');
+const ults=read('www/skin-ults.js');
+const ultsCss=read('www/skin-ults.css');
+cp.execFileSync(process.execPath,['--check','www/skin-ults.js'],{stdio:'inherit'});
 
 assert(index.includes('web-core-loader.js'),'Web core loader is not injected');
 assert(index.includes('web-dev-loader.js'),'Web DEV loader is not injected');
@@ -14,7 +18,6 @@ assert(index.includes('web-parity.js'),'Web parity layer is not injected');
 assert(!index.includes('<script src="game.js"></script>'),'Raw game.js must be replaced by the Web core loader');
 assert(!index.includes('<script src="dev.js"></script>'),'Raw dev.js must be replaced by the Web DEV loader');
 
-// Signatures patched at runtime. If upstream changes, fail CI instead of silently losing balance changes.
 assert(game.includes("const scoreNow=()=>Math.round((kills*10+RUN.boss*500+Math.floor(T)*3)*MZ[4]);"),'score signature changed');
 assert(game.includes("pm=1+(S.perm&&S.perm.coin||0)*.1"),'permanent coin signature changed');
 assert(game.includes("(kills/6+t/12+(win?400:0))"),'run reward signature changed');
@@ -33,6 +36,15 @@ assert(parity.includes('mobile-legacy.js'),'Weapon Mastery / Legacy layer missin
 assert(parity.includes('mobile-rebalance.js'),'Rebalance 2.0 layer missing');
 assert(parity.includes('mobile-arsenal-skins.js'),'Skin arsenal layer missing');
 assert(parity.includes('mobile-hud-responsive.js'),'Responsive HUD layer missing');
+assert(parity.includes("loadLocal('skin-ults.js?v=1')"),'Web skin ULT runtime is not loaded');
 assert(devLoader.includes("earned+=2500"),'DEV reward nerf missing');
+assert(ults.includes("protocol:'sc.ult.v1'"),'Web ULT protocol missing');
+assert(ults.includes('CEIFA DOURADA'),'Golden Reaper Web ULT missing');
+assert(ults.includes('SYSTEM // OVERRIDE'),'ADMIN Web ULT missing');
+assert(ults.includes('i===20?2.15'),'ADMIN Web power scaling missing');
+assert(ults.includes('for(let j=1;j<=6;j++'),'ADMIN Web six-wave sequence missing');
+assert(ults.includes('fireUlt=function()'),'Web ULT override missing');
+assert(ultsCss.includes('#scUltCanvas'),'Web ULT overlay style missing');
+assert(ultsCss.includes('#scUltTitle.admin'),'Web ADMIN ULT style missing');
 
-console.log('Survive Chaos Web parity regression checks passed.');
+console.log('Survive Chaos Web parity + animated skin ULT regression checks passed.');
