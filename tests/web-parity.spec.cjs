@@ -1,0 +1,38 @@
+const fs=require('fs');
+const assert=require('assert');
+const read=p=>fs.readFileSync(p,'utf8');
+const game=read('www/game.js');
+const dev=read('www/dev.js');
+const index=read('www/index.html');
+const core=read('www/web-core-loader.js');
+const devLoader=read('www/web-dev-loader.js');
+const parity=read('www/web-parity.js');
+
+assert(index.includes('web-core-loader.js'),'Web core loader is not injected');
+assert(index.includes('web-dev-loader.js'),'Web DEV loader is not injected');
+assert(index.includes('web-parity.js'),'Web parity layer is not injected');
+assert(!index.includes('<script src="game.js"></script>'),'Raw game.js must be replaced by the Web core loader');
+assert(!index.includes('<script src="dev.js"></script>'),'Raw dev.js must be replaced by the Web DEV loader');
+
+// Signatures patched at runtime. If upstream changes, fail CI instead of silently losing balance changes.
+assert(game.includes("const scoreNow=()=>Math.round((kills*10+RUN.boss*500+Math.floor(T)*3)*MZ[4]);"),'score signature changed');
+assert(game.includes("pm=1+(S.perm&&S.perm.coin||0)*.1"),'permanent coin signature changed');
+assert(game.includes("(kills/6+t/12+(win?400:0))"),'run reward signature changed');
+assert(game.includes("bonus=Math.floor(sc/80*rk[2]*pm)"),'score reward signature changed');
+assert(game.includes("earned+=Math.ceil(v*P.xpm*1.5);"),'max-level XP conversion signature changed');
+assert(game.includes("else{earned+=5;sfx('coin')}"),'coin pickup signature changed');
+assert(game.includes("bossDown();earned+=150;"),'boss reward signature changed');
+assert(dev.includes('earned+=25000'),'DEV reward signature changed');
+
+assert(core.includes('kills*4+RUN.boss*750'),'Web score rebalance missing');
+assert(core.includes('earned+=2'),'Web coin pickup rebalance missing');
+assert(core.includes('SCArsenal.bullet'),'Skin projectile hook missing');
+assert(parity.includes('mobile-economy.js'),'Black Market / Chaos Core layer missing');
+assert(parity.includes('mobile-content.js'),'Content expansion layer missing');
+assert(parity.includes('mobile-legacy.js'),'Weapon Mastery / Legacy layer missing');
+assert(parity.includes('mobile-rebalance.js'),'Rebalance 2.0 layer missing');
+assert(parity.includes('mobile-arsenal-skins.js'),'Skin arsenal layer missing');
+assert(parity.includes('mobile-hud-responsive.js'),'Responsive HUD layer missing');
+assert(devLoader.includes("earned+=2500"),'DEV reward nerf missing');
+
+console.log('Survive Chaos Web parity regression checks passed.');
