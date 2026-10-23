@@ -22,7 +22,7 @@ const JS=[
   'mobile-rebalance.js',
   'mobile-hud-responsive.js'
 ];
-window.SC_WEB_PARITY={version:'2.0',revision:REV,status:'loading',loaded:[],failed:[]};
+window.SC_WEB_PARITY={version:'2.1',revision:REV,status:'loading',loaded:[],failed:[]};
 
 const play=document.getElementById('play');
 const playText=play?play.textContent:'Jogar';
@@ -34,6 +34,7 @@ for(const file of CSS){
   l.dataset.webParity=file;
   document.head.appendChild(l);
 }
+const ultCss=document.createElement('link');ultCss.rel='stylesheet';ultCss.href='skin-ults.css?v=1';ultCss.dataset.webParity='skin-ults.css';document.head.appendChild(ultCss);
 
 function load(file){return new Promise(resolve=>{
   const s=document.createElement('script');
@@ -41,6 +42,12 @@ function load(file){return new Promise(resolve=>{
   s.onload=()=>{SC_WEB_PARITY.loaded.push(file);resolve(true)};
   s.onerror=()=>{SC_WEB_PARITY.failed.push(file);console.warn('[Web Parity] Falhou:',file);resolve(false)};
   document.body.appendChild(s);
+})}
+function loadLocal(file){return new Promise(resolve=>{
+  const s=document.createElement('script');s.src=file;s.async=false;s.dataset.webParity=file;
+  s.onload=()=>{SC_WEB_PARITY.loaded.push(file);resolve(true)};
+  s.onerror=()=>{SC_WEB_PARITY.failed.push(file);console.warn('[Web Parity] Falhou:',file);resolve(false)};
+  document.body.appendChild(s)
 })}
 
 function relabel(){
@@ -54,6 +61,7 @@ function relabel(){
 
 (async()=>{
   for(const file of JS)await load(file);
+  await loadLocal('skin-ults.js?v=1');
   SC_WEB_PARITY.status=SC_WEB_PARITY.failed.length?'partial':'ready';
   relabel();
   const mo=new MutationObserver(relabel);mo.observe(document.body,{childList:true,subtree:true});
@@ -62,7 +70,7 @@ function relabel(){
   try{
     const t=document.getElementById('toast');
     if(t){
-      t.textContent=SC_WEB_PARITY.status==='ready'?'WEB ATUALIZADO · REBALANCE 2.0':'ATUALIZAÇÃO PARCIAL · RECARREGUE A PÁGINA';
+      t.textContent=SC_WEB_PARITY.status==='ready'?'WEB ATUALIZADO · ULTs POR SKIN':'ATUALIZAÇÃO PARCIAL · RECARREGUE A PÁGINA';
       t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)
     }
   }catch(_){ }
