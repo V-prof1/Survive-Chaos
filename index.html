@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <title>Survive Chaos</title>
-  <meta name="theme-color" content="#171233">
+  <meta name="theme-color" content="#080808">
   <style>
-    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#171233}
-    iframe{display:block;width:100%;height:100%;border:0;background:#171233}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080808}
+    iframe{display:block;width:100%;height:100%;border:0;background:#080808}
   </style>
 </head>
 <body>
@@ -16,7 +16,7 @@
     const f=document.getElementById('game');
     const u=new URL('./www/',location.href);
     for(const [k,v] of new URLSearchParams(location.search))u.searchParams.set(k,v);
-    u.searchParams.set('build','web-parity-2');
+    u.searchParams.set('build','web-parity-3');
     u.hash=location.hash;
     f.src=u.href;
   </script>
