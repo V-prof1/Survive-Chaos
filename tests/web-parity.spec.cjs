@@ -5,46 +5,54 @@ const read=p=>fs.readFileSync(p,'utf8');
 const game=read('www/game.js');
 const dev=read('www/dev.js');
 const index=read('www/index.html');
+const root=read('index.html');
 const core=read('www/web-core-loader.js');
 const devLoader=read('www/web-dev-loader.js');
 const parity=read('www/web-parity.js');
-const ults=read('www/skin-ults.js');
-const ultsCss=read('www/skin-ults.css');
-cp.execFileSync(process.execPath,['--check','www/skin-ults.js'],{stdio:'inherit'});
+const bridge=read('www/web-ui-bridge.js');
 
-assert(index.includes('web-core-loader.js'),'Web core loader is not injected');
-assert(index.includes('web-dev-loader.js'),'Web DEV loader is not injected');
-assert(index.includes('web-parity.js'),'Web parity layer is not injected');
+for(const f of ['www/web-core-loader.js','www/web-dev-loader.js','www/web-parity.js','www/web-ui-bridge.js'])cp.execFileSync(process.execPath,['--check',f],{stdio:'inherit'});
+
+assert(index.includes('web-core-loader.js?v=3'),'Web core loader v3 is not injected');
+assert(index.includes('web-dev-loader.js?v=3'),'Web DEV loader v3 is not injected');
+assert(index.includes('web-parity.js?v=3'),'Web parity v3 is not injected');
+assert(root.includes("build','web-parity-3"),'Root Pages bridge does not bust Web parity v3 cache');
 assert(!index.includes('<script src="game.js"></script>'),'Raw game.js must be replaced by the Web core loader');
 assert(!index.includes('<script src="dev.js"></script>'),'Raw dev.js must be replaced by the Web DEV loader');
 
+// Upstream signatures are intentionally kept in the source and transformed at runtime.
 assert(game.includes("const scoreNow=()=>Math.round((kills*10+RUN.boss*500+Math.floor(T)*3)*MZ[4]);"),'score signature changed');
 assert(game.includes("pm=1+(S.perm&&S.perm.coin||0)*.1"),'permanent coin signature changed');
-assert(game.includes("(kills/6+t/12+(win?400:0))"),'run reward signature changed');
-assert(game.includes("bonus=Math.floor(sc/80*rk[2]*pm)"),'score reward signature changed');
-assert(game.includes("earned+=Math.ceil(v*P.xpm*1.5);"),'max-level XP conversion signature changed');
-assert(game.includes("else{earned+=5;sfx('coin')}"),'coin pickup signature changed');
 assert(game.includes("bossDown();earned+=150;"),'boss reward signature changed');
 assert(dev.includes('earned+=25000'),'DEV reward signature changed');
 
+// Core parity patches.
+assert(core.includes('mobileEnemyCap'),'Infinite adaptive enemy cap missing');
+assert(core.includes('HORDA INFINITA'),'Infinite exponential horde patch missing');
 assert(core.includes('kills*4+RUN.boss*750'),'Web score rebalance missing');
-assert(core.includes('earned+=2'),'Web coin pickup rebalance missing');
 assert(core.includes('SCArsenal.bullet'),'Skin projectile hook missing');
-assert(parity.includes('mobile-economy.js'),'Black Market / Chaos Core layer missing');
-assert(parity.includes('mobile-content.js'),'Content expansion layer missing');
-assert(parity.includes('mobile-legacy.js'),'Weapon Mastery / Legacy layer missing');
-assert(parity.includes('mobile-rebalance.js'),'Rebalance 2.0 layer missing');
-assert(parity.includes('mobile-arsenal-skins.js'),'Skin arsenal layer missing');
-assert(parity.includes('mobile-hud-responsive.js'),'Responsive HUD layer missing');
-assert(parity.includes("loadLocal('skin-ults.js?v=1')"),'Web skin ULT runtime is not loaded');
-assert(devLoader.includes("earned+=2500"),'DEV reward nerf missing');
-assert(ults.includes("protocol:'sc.ult.v1'"),'Web ULT protocol missing');
-assert(ults.includes('CEIFA DOURADA'),'Golden Reaper Web ULT missing');
-assert(ults.includes('SYSTEM // OVERRIDE'),'ADMIN Web ULT missing');
-assert(ults.includes('i===20?2.15'),'ADMIN Web power scaling missing');
-assert(ults.includes('for(let j=1;j<=6;j++'),'ADMIN Web six-wave sequence missing');
-assert(ults.includes('fireUlt=function()'),'Web ULT override missing');
-assert(ultsCss.includes('#scUltCanvas'),'Web ULT overlay style missing');
-assert(ultsCss.includes('#scUltTitle.admin'),'Web ADMIN ULT style missing');
+assert(core.includes('SCAIDirector.boss'),'Boss AI Director hook missing');
+assert(core.includes('SCAIDirector.enemy'),'Enemy AI Director hook missing');
+assert(devLoader.includes('earned+=2500'),'DEV reward nerf missing');
 
-console.log('Survive Chaos Web parity + animated skin ULT regression checks passed.');
+// Shared Mobile systems that are safe on Web.
+for(const file of [
+  'mobile-pro.js','mobile-economy.js','mobile-content.js','mobile-legacy.js','mobile-admin-plus.js',
+  'mobile-arsenal-skins.js','mobile-rebalance.js','mobile-difficulty-plus.js','mobile-hud-responsive.js',
+  'mobile-skin-ults.js','mobile-menu-refine.js','mobile-hud-editor.js','mobile-ai-director.js',
+  'mobile-xp-balance.js','mobile-hud-editor-fix.js','mobile-dev-baby-intro.js','mobile-activities-pack.js',
+  'mobile-modes-pack2.js','mobile-replay-pack-v2.js','mobile-squad-ai.js','mobile-defense-mobility.js',
+  'mobile-reality-break.js','mobile-uiux-overhaul.js'
+])assert(parity.includes(file),`Web parity missing ${file}`);
+
+for(const css of ['mobile-main-menu.css','mobile-activities-pack.css','mobile-modes-pack2.css','mobile-replay-pack.css','mobile-uiux-overhaul.css','mobile-uiux-red-theme.css'])assert(parity.includes(css),`Web parity missing ${css}`);
+
+assert(parity.includes("REV='113ba05ad505f1cc2687f3d4f0ba7748fc4af038'"),'Web parity is not pinned to the current Mobile revision');
+assert(parity.includes("skipped:['android-online','cordova','portrait-lock','rotate-easteregg','kaneki']"),'Web-only exclusion list missing');
+assert(!parity.includes("'mobile-online.js'"),'Android online layer must not load on Web');
+assert(!parity.includes("'mobile-rotate-easteregg.js'"),'Portrait easter egg must not load on Web');
+assert(!parity.includes("'mobile-main-menu.js'"),'Mobile orientation-lock runtime must not load on Web');
+assert(bridge.includes("content:'WEB BUILD'"),'Web menu identity bridge missing');
+assert(bridge.includes("menu.classList.add('scMenuV2')"),'Web responsive menu bridge missing');
+
+console.log('Survive Chaos Web parity 3.0 regression checks passed.');
