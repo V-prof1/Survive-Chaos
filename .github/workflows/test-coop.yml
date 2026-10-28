@@ -1,0 +1,41 @@
+name: Test Local Co-op
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'www/game.js'
+      - 'www/pc-controls.js'
+      - 'www/coop-integrity.js'
+      - 'www/web-modern-modes.js'
+      - 'www/index.html'
+      - 'tests/coop-runtime.spec.cjs'
+      - '.github/workflows/test-coop.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  coop-browser:
+    name: Web local co-op runtime
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar sintaxe do co-op
+        run: |
+          node --check www/game.js
+          node --check www/pc-controls.js
+          node --check www/web-modern-modes.js
+          node --check www/coop-integrity.js
+          node --check tests/coop-runtime.spec.cjs
+      - name: Instalar navegador de teste
+        run: |
+          npm install --no-save playwright@1.62.1 --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Testar co-op local no navegador
+        run: node tests/coop-runtime.spec.cjs www
