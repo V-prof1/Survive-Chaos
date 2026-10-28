@@ -16,7 +16,7 @@ for(const f of ['www/web-core-loader.js','www/web-dev-loader.js','www/web-parity
 assert(index.includes('web-core-loader.js?v=3'),'Web core loader v3 is not injected');
 assert(index.includes('web-dev-loader.js?v=3'),'Web DEV loader v3 is not injected');
 assert(index.includes('web-parity.js?v=4'),'Web parity fixed cache-buster v4 is not injected');
-assert(root.includes("build','web-parity-3"),'Root Pages bridge changed unexpectedly');
+assert(root.includes("build','web-parity-4"),'Root Pages bridge must bust the inner Web cache with parity v4');
 assert(!index.includes('<script src="game.js"></script>'),'Raw game.js must be replaced by the Web core loader');
 assert(!index.includes('<script src="dev.js"></script>'),'Raw dev.js must be replaced by the Web DEV loader');
 
