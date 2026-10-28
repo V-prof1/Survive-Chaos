@@ -69,7 +69,6 @@
   }
 
   button.addEventListener('click', lockLandscape);
-  button.addEventListener('pointerup', lockLandscape);
 
   document.addEventListener('pointerup', e => {
     if (e.target?.closest?.('#play,#go,#again,#intro_b')) lockLandscape();
