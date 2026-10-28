@@ -16,7 +16,8 @@
     const f=document.getElementById('game');
     const u=new URL('./www/',location.href);
     for(const [k,v] of new URLSearchParams(location.search))u.searchParams.set(k,v);
-    u.searchParams.set('build','web-parity-3');
+    // Internal cache-buster only. The public/share URL remains unchanged.
+    u.searchParams.set('build','web-parity-4');
     u.hash=location.hash;
     f.src=u.href;
   </script>
