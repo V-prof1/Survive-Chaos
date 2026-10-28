@@ -17,8 +17,21 @@
     const u=new URL('./www/',location.href);
     for(const [k,v] of new URLSearchParams(location.search))u.searchParams.set(k,v);
     // Internal cache-buster only. The public/share URL remains unchanged.
-    u.searchParams.set('build','stable-web-1');
+    u.searchParams.set('build','modern-web-2');
     u.hash=location.hash;
+
+    function injectModernWeb(){
+      try{
+        const d=f.contentDocument;if(!d||!d.head||!d.body)return;
+        if(!d.querySelector('link[data-sc-web-modern]')){
+          const l=d.createElement('link');l.rel='stylesheet';l.href='web-modern.css?v=2';l.dataset.scWebModern='2';d.head.appendChild(l);
+        }
+        if(!d.querySelector('script[data-sc-web-modes]')){
+          const s=d.createElement('script');s.src='web-modern-modes.js?v=2';s.dataset.scWebModes='2';d.body.appendChild(s);
+        }
+      }catch(e){console.error('[Survive Chaos Web modern bootstrap]',e)}
+    }
+    f.addEventListener('load',injectModernWeb);
     f.src=u.href;
   </script>
 </body>
