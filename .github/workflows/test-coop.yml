@@ -11,6 +11,7 @@ on:
       - 'www/web-modern-modes.js'
       - 'www/index.html'
       - 'tests/coop-runtime.spec.cjs'
+      - 'tests/coop-runtime-v2.spec.cjs'
       - '.github/workflows/test-coop.yml'
 
 permissions:
@@ -33,9 +34,10 @@ jobs:
           node --check www/web-modern-modes.js
           node --check www/coop-integrity.js
           node --check tests/coop-runtime.spec.cjs
+          node --check tests/coop-runtime-v2.spec.cjs
       - name: Instalar navegador de teste
         run: |
           npm install --no-save playwright@1.62.1 --no-audit --no-fund
           npx playwright install --with-deps chromium
       - name: Testar co-op local no navegador
-        run: node tests/coop-runtime.spec.cjs www
+        run: node tests/coop-runtime-v2.spec.cjs www
