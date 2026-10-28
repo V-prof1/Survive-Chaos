@@ -1,4 +1,4 @@
-/* Survive Chaos Web — Local Co-op Integrity 1.0
+/* Survive Chaos Web — Local Co-op Integrity 1.1
    Isolated fixes for 2-player local co-op. Solo gameplay is left untouched. */
 (() => {
 'use strict';
@@ -61,15 +61,15 @@ try{
     B.push=function(){for(const b of arguments)tagBullet(b);return raw.apply(this,arguments)};
   }
 
-  // Preserve burn ownership too; a burn kill must belong to the player who applied it.
+  // Preserve ownership for direct hits and delayed burn ticks.
   let hitDepth=0;
   if(typeof hit==='function'){
     const baseHit=hit;
-    hit=function(e){const owner=P;hitDepth++;try{const r=baseHit.apply(this,arguments);if(coop()&&e&&owner&&(owner.burn||0)>0&&e.bn>0)e.__scBurnOwner=owner;return r}finally{hitDepth--}};
+    hit=function(e){const owner=P;hitDepth++;try{const r=baseHit.apply(this,arguments);if(coop()&&e&&owner){e.__scLastHitOwner=owner;if((owner.burn||0)>0)e.__scBurnOwner=owner}return r}finally{hitDepth--}};
   }
   if(typeof kill==='function'){
     const baseKill=kill;
-    kill=function(e){if(coop()&&!hitDepth&&e&&e.bn>0&&e.__scBurnOwner)P=e.__scBurnOwner;return baseKill.apply(this,arguments)};
+    kill=function(e){if(coop()&&!hitDepth&&e){const owner=(e.bn>0&&e.__scBurnOwner)||e.__scLastHitOwner;if(owner&&!owner.dead)P=owner}return baseKill.apply(this,arguments)};
   }
 
   // Turrets inherit the player who picked them up, instead of silently using P1 stats.
@@ -151,7 +151,7 @@ try{
   }
 
   armBullets();mapPads();
-  window.SCCoopIntegrity={version:'1.0',party,alive,mapPads,armBullets};
-  console.log('[Co-op] Integrity 1.0 active');
+  window.SCCoopIntegrity={version:'1.1',party,alive,mapPads,armBullets};
+  console.log('[Co-op] Integrity 1.1 active');
 }catch(err){console.error('[Co-op Integrity]',err)}
 })();
