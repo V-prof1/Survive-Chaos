@@ -1,0 +1,268 @@
+/* Survive Chaos Web — landscape setup shell */
+#scSetupTabs,#scSetupStage{display:none}
+
+html.sc-landscape #setup.sc-shell-ready{
+  padding:8px 10px!important;
+  overflow:hidden!important;
+  justify-content:center!important;
+  align-items:center!important;
+}
+html.sc-landscape #setup .panel.setup.scSetupShell{
+  width:min(1180px,calc(100vw - 20px))!important;
+  height:calc(100dvh - 16px)!important;
+  max-height:760px!important;
+  padding:10px!important;
+  margin:0 auto!important;
+  overflow:hidden!important;
+  display:grid!important;
+  grid-template-rows:auto auto minmax(0,1fr) auto!important;
+  gap:9px!important;
+  border-radius:20px!important;
+  border:1px solid #303744!important;
+  background:linear-gradient(180deg,#0f1218 0%,#090b10 100%)!important;
+  box-shadow:0 20px 50px rgba(0,0,0,.4)!important;
+}
+html.sc-landscape .scSetupTitle{
+  min-height:34px!important;
+  margin:0!important;
+  display:grid!important;
+  grid-template-columns:auto auto 1fr!important;
+  align-items:center!important;
+  justify-content:start!important;
+  gap:8px!important;
+  text-align:left!important;
+  padding:0 4px!important;
+  color:#fff!important;
+  text-shadow:none!important;
+  font-size:20px!important;
+}
+html.sc-landscape .scSetupTitle>span{font-size:19px}
+html.sc-landscape .scSetupTitle>b{font:900 20px/1 'Lilita One',sans-serif;letter-spacing:.02em}
+html.sc-landscape .scSetupTitle>small{font:800 9px/1.2 Nunito,sans-serif;color:#737c8a;letter-spacing:.08em;text-transform:uppercase}
+
+html.sc-landscape #scSetupTabs{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:8px!important;
+}
+html.sc-landscape .scSetupTab{
+  min-width:0!important;
+  height:44px!important;
+  border:1px solid #2d3440!important;
+  border-radius:11px!important;
+  background:#171b22!important;
+  color:#aab1bd!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  font:900 12px/1 Nunito,sans-serif!important;
+  letter-spacing:.02em!important;
+  box-shadow:none!important;
+}
+html.sc-landscape .scSetupTab span{font-size:16px;line-height:1}
+html.sc-landscape .scSetupTab.on{
+  background:linear-gradient(180deg,#42131e,#261015)!important;
+  border-color:#e53b53!important;
+  color:#fff!important;
+  box-shadow:inset 0 -2px 0 #8e1c2f!important;
+}
+html.sc-landscape .scSetupTab:active{transform:translateY(1px)}
+
+html.sc-landscape #scSetupStage{
+  display:block!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  border:1px solid #202630!important;
+  border-radius:16px!important;
+  background:#0b0e13!important;
+}
+html.sc-landscape .scSetupPane{
+  display:none!important;
+  height:100%!important;
+  min-height:0!important;
+  padding:11px!important;
+  overflow:auto!important;
+  overscroll-behavior:contain!important;
+  touch-action:pan-y!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:#404957 #11151b!important;
+}
+html.sc-landscape .scSetupPane.on{display:grid!important;align-content:start!important;gap:10px!important}
+html.sc-landscape .scSetupPane[data-pane="run"],
+html.sc-landscape .scSetupPane[data-pane="world"]{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+html.sc-landscape .scSetupPane[data-pane="run"]>.tog{
+  grid-column:1/-1!important;
+}
+html.sc-landscape .scSetupPane[data-pane="players"],
+html.sc-landscape .scSetupPane[data-pane="advanced"]{
+  grid-template-columns:1fr!important;
+}
+
+html.sc-landscape #setup .scSetupPane>.sec,
+html.sc-landscape #setup .scSetupPane>#scWebAdvancedModes{
+  margin:0!important;
+  min-width:0!important;
+  padding:11px!important;
+  border:1px solid #28303b!important;
+  border-radius:14px!important;
+  background:#12161d!important;
+  box-shadow:none!important;
+}
+html.sc-landscape #setup .scSetupPane .lbl{
+  margin:0 0 8px!important;
+  color:#ff8f9f!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.16em!important;
+}
+html.sc-landscape #setup .scSetupPane .seg{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+html.sc-landscape #setup .scSetupPane .opt{
+  min-height:58px!important;
+  padding:8px 10px!important;
+  border-radius:11px!important;
+  border:1px solid #303744!important;
+  background:linear-gradient(180deg,#1b2029,#151920)!important;
+  color:#f2f4f8!important;
+  box-shadow:none!important;
+  font-size:12px!important;
+}
+html.sc-landscape #setup .scSetupPane .opt b{font-size:13px!important}
+html.sc-landscape #setup .scSetupPane .opt.on{
+  background:linear-gradient(180deg,#4a1520,#2b1016)!important;
+  border-color:#ff4058!important;
+  box-shadow:inset 4px 0 0 #ff4058!important;
+}
+html.sc-landscape #setup .scSetupPane .desc{
+  margin-top:8px!important;
+  color:#98a0ad!important;
+  font-size:10px!important;
+  line-height:1.35!important;
+}
+html.sc-landscape #setup .scSetupPane .tog{
+  min-height:50px!important;
+  margin:0!important;
+  border-radius:12px!important;
+  border:1px solid #313846!important;
+  background:#151a21!important;
+  padding:9px 12px!important;
+  font-size:12px!important;
+}
+html.sc-landscape #setup .scSetupPane .tog.on{
+  border-color:#8f3040!important;
+  background:#2b1118!important;
+}
+
+html.sc-landscape .scSetupPane[data-pane="players"]>.sec{
+  height:auto!important;
+}
+html.sc-landscape .scSetupPane[data-pane="players"] .seg{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+html.sc-landscape .scSetupPane[data-pane="players"] .opt{
+  min-height:52px!important;
+}
+html.sc-landscape .scSetupPane[data-pane="players"] .ni{
+  min-height:42px!important;
+  font-size:14px!important;
+}
+
+html.sc-landscape #scWebAdvancedModes{
+  min-height:0!important;
+  overflow:visible!important;
+}
+html.sc-landscape #scWebAdvancedModes .scWebModesHead{
+  margin-bottom:9px!important;
+}
+html.sc-landscape #scWebAdvancedModes .scWebModesHead b{font-size:14px!important}
+html.sc-landscape .scWebModeGrid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  overflow:visible!important;
+}
+html.sc-landscape #setup .scWebModeCard{
+  min-height:68px!important;
+  height:auto!important;
+  padding:9px!important;
+  gap:8px!important;
+  border-radius:11px!important;
+}
+html.sc-landscape .scWebModeCard .wmIcon{
+  flex:0 0 30px!important;
+  width:30px!important;
+  height:30px!important;
+  font-size:18px!important;
+  border-radius:8px!important;
+}
+html.sc-landscape .scWebModeCard .wmCopy b{font-size:10px!important}
+html.sc-landscape .scWebModeCard .wmCopy small{font-size:7.5px!important;line-height:1.25!important}
+html.sc-landscape .scWebModeDesc{
+  margin-top:8px!important;
+  padding:7px 9px!important;
+  font-size:8.5px!important;
+  border-radius:9px!important;
+}
+
+html.sc-landscape #setup .scSetupActions{
+  position:static!important;
+  margin:0!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(150px,.72fr) minmax(220px,1.28fr)!important;
+  gap:10px!important;
+  background:none!important;
+}
+html.sc-landscape #setup .scSetupActions #bk,
+html.sc-landscape #setup .scSetupActions #go{
+  width:100%!important;
+  min-width:0!important;
+  min-height:54px!important;
+  height:54px!important;
+  margin:0!important;
+  border-radius:12px!important;
+  font-size:15px!important;
+}
+html.sc-landscape #setup .scSetupActions #bk{
+  background:linear-gradient(180deg,#292e38,#1d2129)!important;
+  border-color:#39414f!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+html.sc-landscape #setup .scSetupActions #go{
+  background:linear-gradient(180deg,#ff4d64,#c9203b)!important;
+  border-color:#861629!important;
+  color:#fff!important;
+  box-shadow:inset 0 -3px 0 #7f1425,0 4px 0 #4d0d18!important;
+}
+
+@media (orientation:landscape) and (max-height:500px){
+  html.sc-landscape #setup .panel.setup.scSetupShell{
+    height:calc(100dvh - 10px)!important;
+    width:calc(100vw - 12px)!important;
+    padding:7px!important;
+    gap:6px!important;
+  }
+  html.sc-landscape .scSetupTitle{min-height:28px!important}
+  html.sc-landscape .scSetupTitle>b{font-size:17px!important}
+  html.sc-landscape .scSetupTitle>small{font-size:7px!important}
+  html.sc-landscape .scSetupTab{height:38px!important;font-size:10px!important}
+  html.sc-landscape .scSetupTab span{font-size:14px!important}
+  html.sc-landscape .scSetupPane{padding:8px!important;gap:8px!important}
+  html.sc-landscape #setup .scSetupPane>.sec,
+  html.sc-landscape #setup .scSetupPane>#scWebAdvancedModes{padding:8px!important}
+  html.sc-landscape #setup .scSetupPane .opt{min-height:48px!important;padding:6px 8px!important}
+  html.sc-landscape #setup .scSetupPane .opt b{font-size:11px!important}
+  html.sc-landscape #setup .scSetupPane .desc{font-size:8.5px!important;margin-top:6px!important}
+  html.sc-landscape #setup .scWebModeCard{min-height:58px!important;padding:7px!important}
+  html.sc-landscape .scWebModeCard .wmCopy small{display:none!important}
+  html.sc-landscape .scWebModeDesc{display:none!important}
+  html.sc-landscape #setup .scSetupActions #bk,
+  html.sc-landscape #setup .scSetupActions #go{height:46px!important;min-height:46px!important;font-size:13px!important}
+}
