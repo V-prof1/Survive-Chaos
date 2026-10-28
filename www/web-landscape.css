@@ -1,89 +1,111 @@
-/* Survive Chaos Web — landscape-first mobile layout */
+/* Survive Chaos Web — landscape-first shell */
 #scLandscapeGate{display:none}
 
-@media (pointer:coarse){
-  html.sc-portrait,html.sc-portrait body{overflow:hidden!important;background:#050609!important}
-  html.sc-portrait #scLandscapeGate{
-    position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:24px;
-    background:radial-gradient(circle at 50% 38%,#281018 0,#0b0d12 48%,#050609 100%);
-  }
-  .sc-rotate-card{
-    width:min(420px,92vw);padding:26px 22px;border:1px solid #343a46;border-radius:22px;
-    background:#101319;text-align:center;color:#f7f8fb;box-shadow:0 22px 56px rgba(0,0,0,.42)
-  }
-  .sc-phone-rotate{font-size:64px;line-height:1;color:#ff536a;transform:rotate(90deg);margin:2px auto 18px}
-  .sc-rotate-card b{display:block;font:900 24px/1.05 Nunito,system-ui,sans-serif;letter-spacing:.035em}
-  .sc-rotate-card span{display:block;margin:10px auto 18px;max-width:330px;color:#b4bac6;font:700 14px/1.45 Nunito,system-ui,sans-serif}
-  #scLandscapeButton{
-    width:100%;min-height:54px;border:1px solid #8e1729;border-radius:13px;background:linear-gradient(180deg,#ff5268,#c7203a);
-    color:#fff;font:900 14px/1 Nunito,system-ui,sans-serif;letter-spacing:.07em;box-shadow:0 5px 0 #54101b
-  }
-  #scLandscapeButton:active{transform:translateY(2px);box-shadow:0 3px 0 #54101b}
-  .sc-rotate-card small{display:block;margin-top:14px;color:#737b89;font:700 10px/1.35 Nunito,system-ui,sans-serif}
+html.sc-touch.sc-portrait,html.sc-touch.sc-portrait body{
+  overflow:hidden!important;
+  background:#050609!important;
 }
-
-@media (pointer:coarse) and (orientation:landscape){
-  html,body{min-width:640px}
-
-  #menu{
-    flex-direction:row!important;justify-content:center!important;align-items:center!important;
-    padding:max(14px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))!important;
-    gap:clamp(24px,4vw,52px)!important;overflow:auto!important
-  }
-  #menu .mt{width:min(35vw,420px)!important;min-width:240px!important;text-align:left!important;align-items:flex-start!important}
-  #menu .mt::before{min-height:24px!important;font-size:8px!important;margin-bottom:8px!important}
-  #menu h1{font-size:clamp(48px,8.2vw,78px)!important;line-height:.84!important;margin:0 0 12px!important}
-  #menu .sub{display:block!important;font-size:14px!important;line-height:1.35!important}
-  #menu .mb{width:min(54vw,600px)!important;min-width:390px!important;padding:16px!important;border-radius:20px!important}
-  #menu .prof{min-height:48px!important}
-  #menu .prof input{font-size:16px!important}
-  #menu .stack{gap:11px!important}
-  #menu .row,#menu .duo,#menu .row2{gap:10px!important}
-  #menu .btn{min-height:52px!important;font-size:14px!important}
-  #menu #play{min-height:64px!important;font-size:20px!important}
-  #menu .ft{font-size:9px!important;margin-top:4px!important}
-
-  #setup{padding:14px 16px 18px!important;align-items:flex-start!important;overflow-y:auto!important}
-  #setup .panel.setup{
-    width:min(1180px,calc(100vw - 32px))!important;max-height:none!important;padding:16px!important;border-radius:20px!important;
-    overflow:visible!important;margin:0 auto!important
-  }
-  #setup h2{font-size:26px!important;margin-bottom:13px!important}
-  #setup .sec{padding:13px!important;margin-bottom:12px!important;border-radius:15px!important}
-  #setup .lbl{font-size:10px!important;margin-bottom:9px!important}
-  #setup .seg{gap:10px!important;grid-template-columns:repeat(auto-fit,minmax(132px,1fr))!important}
-  #setup .opt{min-height:58px!important;padding:11px 12px!important;border-radius:12px!important;font-size:13px!important}
-  #setup .opt b{font-size:12px!important}
-  #setup .desc{font-size:11px!important;margin-top:9px!important}
-  #setup .tog{min-height:54px!important;font-size:13px!important}
-  #setup .row:last-child{gap:12px!important;padding-top:12px!important}
-  #setup #bk,#setup #go{min-height:58px!important;font-size:15px!important}
-
-  .scWebModeGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;overflow:visible!important}
-  #setup .scWebModeCard{min-height:88px!important;height:auto!important;padding:11px!important;gap:10px!important}
-  .scWebModeCard .wmIcon{flex-basis:36px!important;width:36px!important;height:36px!important;font-size:22px!important;border-radius:10px!important}
-  .scWebModeCard .wmCopy{gap:5px!important}
-  .scWebModeCard .wmCopy b{font-size:11px!important;line-height:1.15!important}
-  .scWebModeCard .wmCopy small{font-size:8.5px!important;line-height:1.28!important}
-  .scWebModeDesc{font-size:10px!important;padding:10px 12px!important;margin-top:10px!important}
-  #scWebAdvancedModes .scWebModesHead b{font-size:15px!important}
-  #scWebAdvancedModes .scWebModesHead small{font-size:8px!important}
-
-  #shop,#cards,#pause,#over,#ach,#hist,#cls,#adm{font-size:1.06em}
-  #shop .btn,#cards .btn,#pause .btn,#over .btn,#ach .btn,#hist .btn,#cls .btn,#adm .btn{min-height:48px!important}
-
-  #dash,#dash1,#ult,#ult1{transform:scale(1.08);transform-origin:center}
+html.sc-touch.sc-portrait #scLandscapeGate{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:grid!important;
+  place-items:center;
+  padding:22px;
+  background:radial-gradient(circle at 50% 36%,#2a1018 0,#0d1016 50%,#050609 100%);
 }
+.sc-rotate-card{
+  width:min(430px,92vw);
+  padding:26px 22px 22px;
+  border:1px solid #343b47;
+  border-radius:22px;
+  background:linear-gradient(180deg,#13171e,#0c0f14);
+  text-align:center;
+  color:#f7f8fb;
+  box-shadow:0 24px 60px rgba(0,0,0,.48);
+}
+.sc-phone-rotate{
+  width:70px;
+  height:46px;
+  margin:0 auto 18px;
+  border:5px solid #ff536a;
+  border-radius:12px;
+  position:relative;
+  transform:rotate(-8deg);
+}
+.sc-phone-rotate::after{
+  content:'';
+  position:absolute;
+  width:5px;height:5px;border-radius:50%;
+  right:5px;top:50%;transform:translateY(-50%);
+  background:#ff536a;
+}
+.sc-rotate-card b{display:block;font:900 25px/1.05 Nunito,system-ui,sans-serif;letter-spacing:.035em}
+.sc-rotate-card span{display:block;margin:10px auto 18px;max-width:335px;color:#b5bbc7;font:700 14px/1.45 Nunito,system-ui,sans-serif}
+#scLandscapeButton{
+  width:100%;min-height:56px;border:1px solid #8e1729;border-radius:13px;
+  background:linear-gradient(180deg,#ff5268,#c7203a);color:#fff;
+  font:900 14px/1 Nunito,system-ui,sans-serif;letter-spacing:.06em;
+  box-shadow:0 5px 0 #54101b;
+}
+#scLandscapeButton:active{transform:translateY(2px);box-shadow:0 3px 0 #54101b}
+.sc-rotate-card small{display:block;margin-top:14px;color:#747d8b;font:700 10px/1.4 Nunito,system-ui,sans-serif}
 
-@media (pointer:coarse) and (orientation:landscape) and (max-height:460px){
-  #menu{padding:10px 16px!important;gap:28px!important}
-  #menu h1{font-size:clamp(46px,7.7vw,66px)!important}
-  #menu .mb{padding:13px!important}
-  #menu .btn{min-height:48px!important}
-  #menu #play{min-height:58px!important}
-  #setup{padding:10px 14px 16px!important}
-  #setup .panel.setup{width:calc(100vw - 28px)!important;padding:14px!important}
-  #setup .sec{padding:11px!important;margin-bottom:10px!important}
-  #setup .opt{min-height:54px!important}
-  #setup .scWebModeCard{min-height:82px!important}
+html.sc-touch.sc-landscape #menu{
+  flex-direction:row!important;
+  justify-content:center!important;
+  align-items:center!important;
+  padding:max(12px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))!important;
+  gap:clamp(24px,4vw,56px)!important;
+  overflow:hidden!important;
+}
+html.sc-touch.sc-landscape #menu .mt{
+  width:min(36vw,430px)!important;
+  min-width:240px!important;
+  text-align:left!important;
+  align-items:flex-start!important;
+}
+html.sc-touch.sc-landscape #menu h1{
+  font-size:clamp(48px,8vw,80px)!important;
+  line-height:.86!important;
+  margin:0 0 12px!important;
+}
+html.sc-touch.sc-landscape #menu .sub{
+  display:block!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  text-align:left!important;
+}
+html.sc-touch.sc-landscape #menu .mb{
+  width:min(52vw,590px)!important;
+  min-width:380px!important;
+  padding:16px!important;
+  border-radius:20px!important;
+}
+html.sc-touch.sc-landscape #menu .prof{min-height:48px!important}
+html.sc-touch.sc-landscape #menu .prof input{font-size:16px!important}
+html.sc-touch.sc-landscape #menu .stack{gap:10px!important}
+html.sc-touch.sc-landscape #menu .row,
+html.sc-touch.sc-landscape #menu .duo,
+html.sc-touch.sc-landscape #menu .row2{gap:9px!important}
+html.sc-touch.sc-landscape #menu .btn{min-height:50px!important;font-size:14px!important}
+html.sc-touch.sc-landscape #menu #play{min-height:62px!important;font-size:19px!important}
+html.sc-touch.sc-landscape #menu .ft{font-size:9px!important;margin-top:3px!important}
+
+html.sc-touch.sc-landscape #shop,
+html.sc-touch.sc-landscape #cards,
+html.sc-touch.sc-landscape #pause,
+html.sc-touch.sc-landscape #over,
+html.sc-touch.sc-landscape #ach,
+html.sc-touch.sc-landscape #hist,
+html.sc-touch.sc-landscape #cls,
+html.sc-touch.sc-landscape #adm{font-size:1.04em}
+
+@media (orientation:landscape) and (max-height:500px){
+  html.sc-touch.sc-landscape #menu{padding:8px 14px!important;gap:24px!important}
+  html.sc-touch.sc-landscape #menu h1{font-size:clamp(43px,7vw,64px)!important}
+  html.sc-touch.sc-landscape #menu .sub{font-size:12px!important}
+  html.sc-touch.sc-landscape #menu .mb{padding:11px!important}
+  html.sc-touch.sc-landscape #menu .btn{min-height:44px!important}
+  html.sc-touch.sc-landscape #menu #play{min-height:52px!important}
 }
