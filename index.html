@@ -3,36 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#07080b">
   <title>Survive Chaos</title>
-  <meta name="theme-color" content="#080808">
-  <style>
-    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080808}
-    iframe{display:block;width:100%;height:100%;border:0;background:#080808}
-  </style>
+  <style>html,body{margin:0;width:100%;height:100%;background:#07080b;color:#fff;font-family:system-ui,sans-serif}body{display:grid;place-items:center}span{opacity:.65;font-weight:700}</style>
+  <noscript><meta http-equiv="refresh" content="0;url=./www/"></noscript>
 </head>
 <body>
-  <iframe id="game" src="./www/" title="Survive Chaos" allow="fullscreen; autoplay; gamepad" referrerpolicy="same-origin"></iframe>
+  <span>Carregando Survive Chaos…</span>
   <script>
-    const f=document.getElementById('game');
     const u=new URL('./www/',location.href);
-    for(const [k,v] of new URLSearchParams(location.search))u.searchParams.set(k,v);
-    // Internal cache-buster only. The public/share URL remains unchanged.
-    u.searchParams.set('build','modern-web-2');
-    u.hash=location.hash;
-
-    function injectModernWeb(){
-      try{
-        const d=f.contentDocument;if(!d||!d.head||!d.body)return;
-        if(!d.querySelector('link[data-sc-web-modern]')){
-          const l=d.createElement('link');l.rel='stylesheet';l.href='web-modern.css?v=2';l.dataset.scWebModern='2';d.head.appendChild(l);
-        }
-        if(!d.querySelector('script[data-sc-web-modes]')){
-          const s=d.createElement('script');s.src='web-modern-modes.js?v=2';s.dataset.scWebModes='2';d.body.appendChild(s);
-        }
-      }catch(e){console.error('[Survive Chaos Web modern bootstrap]',e)}
-    }
-    f.addEventListener('load',injectModernWeb);
-    f.src=u.href;
+    u.search=location.search;u.hash=location.hash;
+    location.replace(u.href);
   </script>
 </body>
 </html>
