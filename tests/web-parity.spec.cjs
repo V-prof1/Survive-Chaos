@@ -15,10 +15,18 @@ for(const f of ['www/web-core-loader.js','www/web-dev-loader.js','www/web-parity
 
 assert(index.includes('web-core-loader.js?v=3'),'Web core loader v3 is not injected');
 assert(index.includes('web-dev-loader.js?v=3'),'Web DEV loader v3 is not injected');
-assert(index.includes('web-parity.js?v=3'),'Web parity v3 is not injected');
-assert(root.includes("build','web-parity-3"),'Root Pages bridge does not bust Web parity v3 cache');
+assert(index.includes('web-parity.js?v=4'),'Web parity fixed cache-buster v4 is not injected');
+assert(root.includes("build','web-parity-3"),'Root Pages bridge changed unexpectedly');
 assert(!index.includes('<script src="game.js"></script>'),'Raw game.js must be replaced by the Web core loader');
 assert(!index.includes('<script src="dev.js"></script>'),'Raw dev.js must be replaced by the Web DEV loader');
+
+// The base game must remain playable even if jsDelivr is slow/unavailable.
+assert(parity.includes("version:'3.1'"),'Web parity 3.1 startup fix missing');
+assert(parity.includes('function forcePlayReady()'),'Play readiness guard missing');
+assert(parity.includes("play.disabled=false"),'Play button is not explicitly kept enabled');
+assert(!parity.includes('play.disabled=true'),'Web parity must never disable Play while remote modules load');
+assert(parity.includes("why==='timeout'"),'Remote module timeout protection missing');
+assert(parity.includes('webStartRescue'),'Local Play navigation rescue missing');
 
 // Upstream signatures are intentionally kept in the source and transformed at runtime.
 assert(game.includes("const scoreNow=()=>Math.round((kills*10+RUN.boss*500+Math.floor(T)*3)*MZ[4]);"),'score signature changed');
@@ -47,7 +55,7 @@ for(const file of [
 
 for(const css of ['mobile-main-menu.css','mobile-activities-pack.css','mobile-modes-pack2.css','mobile-replay-pack.css','mobile-uiux-overhaul.css','mobile-uiux-red-theme.css'])assert(parity.includes(css),`Web parity missing ${css}`);
 
-assert(parity.includes("REV='113ba05ad505f1cc2687f3d4f0ba7748fc4af038'"),'Web parity is not pinned to the current Mobile revision');
+assert(parity.includes("REV='113ba05ad505f1cc2687f3d4f0ba7748fc4af038'"),'Web parity is not pinned to the approved Mobile revision');
 assert(parity.includes("skipped:['android-online','cordova','portrait-lock','rotate-easteregg','kaneki']"),'Web-only exclusion list missing');
 assert(!parity.includes("'mobile-online.js'"),'Android online layer must not load on Web');
 assert(!parity.includes("'mobile-rotate-easteregg.js'"),'Portrait easter egg must not load on Web');
@@ -55,4 +63,4 @@ assert(!parity.includes("'mobile-main-menu.js'"),'Mobile orientation-lock runtim
 assert(bridge.includes("content:'WEB BUILD'"),'Web menu identity bridge missing');
 assert(bridge.includes("menu.classList.add('scMenuV2')"),'Web responsive menu bridge missing');
 
-console.log('Survive Chaos Web parity 3.0 regression checks passed.');
+console.log('Survive Chaos Web parity 3.1 regression checks passed.');
