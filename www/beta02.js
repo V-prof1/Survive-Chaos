@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // Survive Chaos Beta 0.2 — sprint, stamina e perigo de proximidade
 (() => {
   const B02 = { drain: 24, regen: 18, regenDelay: .7, dashCost: 25, sprintMul: 1.45 };

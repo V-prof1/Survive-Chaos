@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 /* Survive Chaos Web — Local Co-op Integrity 1.1
    Isolated fixes for 2-player local co-op. Solo gameplay is left untouched. */
 (() => {

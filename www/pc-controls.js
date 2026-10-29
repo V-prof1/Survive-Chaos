@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // Controles extras para PC.
 // Os atalhos de gameplay (WASD/Setas, dash e ULT) ficam centralizados em game.js.
 // Este arquivo apenas carrega sprint, stamina e efeitos da Beta 0.2.

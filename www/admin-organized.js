@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 /* Survive Chaos Web — Organized Admin Panel 27.0 */
 (()=>{'use strict';
 if(window.__SC_ADMIN_ORGANIZED__)return;window.__SC_ADMIN_ORGANIZED__=1;

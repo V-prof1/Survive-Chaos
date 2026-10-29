@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 /* Survive Chaos — Guided Interface Tour 4.0
    Mandatory first-run UI walkthrough: SOLO first, then LOCAL CO-OP + ECHO practice. */
 (()=>{'use strict';

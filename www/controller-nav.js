@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 /* Survive Chaos — Controller Navigation 2.0
    D-pad/left stick navigation, A confirm, B back, Start pause, virtual keyboard. */
 (() => {

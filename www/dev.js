@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // ===== BOSS SECRETO: DEV =====
 // Gatilho: Clássico/Rápido + infinito + pistola + dificuldade Baby/Difícil/Pesadelo, ao chegar em 9.999 abates.
 // Luta em 5 biomas (um por vez, a partir do bioma atual) x 3 barras de vida = 15 barras. Em cada bioma as barras

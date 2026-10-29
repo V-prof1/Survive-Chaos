@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 const $=i=>document.getElementById(i),cv=$('c'),x=cv.getContext('2d'),R=Math.random,PI=Math.PI;
 let W,H,D,Z=1,ZB=1,ZM=1,DC=1.75,LQ=0,LW=0,HF=0;function rs(){D=Math.min(devicePixelRatio||1,DC);W=innerWidth;H=innerHeight;cv.width=W*D;cv.height=H*D;ZB=Z=Math.min(W,H)/520}
 addEventListener('resize',rs);addEventListener('orientationchange',()=>setTimeout(rs,150));rs();

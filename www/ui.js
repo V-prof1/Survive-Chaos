@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // ===== interface: botão/tecla de pausa e rolagem melhorada =====
 // Pausa: botão grande no canto superior direito (HUD) e tecla P. Rolagem: um único scroll por tela,
 // arrastar com o mouse, teclado (setas, PageUp/PageDown, Home/End), sombras nas bordas e volta ao topo ao abrir.

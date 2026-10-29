@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // ---------- Survive Chaos: sistema de sprites (pixel art 3x; bosses em 1x) ----------
 // Cada "sheet" é um PNG com uma animação por linha. Carregados sob demanda; se algo
 // ainda não carregou, o jogo cai no desenho antigo (emoji/vetor), então nunca trava.

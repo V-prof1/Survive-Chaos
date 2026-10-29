@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // ===== trilha sonora (arquivos MP3) =====
 // jogo: menu e partida | boss: qualquer boss normal | DEV: 3 faixas por barra (1-5, 6-10, 11-15)
 // Efeitos: aviso do DEV, boss derrotado, DEV derrotado. Respeita o botão de som e a "Música automática".

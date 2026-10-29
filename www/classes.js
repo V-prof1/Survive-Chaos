@@ -1,3 +1,6 @@
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
+/* ©criado por Vitor Ag/Nyx - 2026 */
 // ===== MODO CLASSES: 6 melhorias + 2 supremas =====
 // Você começa com as melhorias escolhidas no máximo e sem cartas durante a partida; bosses surgem ao acaso (50% a cada 20 s).
 const CLM={u:6,s:2};
