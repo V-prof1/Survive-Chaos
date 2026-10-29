@@ -9,9 +9,14 @@ on:
       - 'www/pc-controls.js'
       - 'www/coop-integrity.js'
       - 'www/web-modern-modes.js'
+      - 'www/controller-nav2.js'
+      - 'www/controller-nav.css'
+      - 'www/tutorial.js'
+      - 'www/tutorial.css'
       - 'www/index.html'
       - 'tests/coop-runtime.spec.cjs'
       - 'tests/coop-runtime-v2.spec.cjs'
+      - 'tests/controller-tutorial.spec.cjs'
       - '.github/workflows/test-coop.yml'
 
 permissions:
@@ -27,17 +32,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validar sintaxe do co-op
+      - name: Validar sintaxe
         run: |
           node --check www/game.js
           node --check www/pc-controls.js
           node --check www/web-modern-modes.js
           node --check www/coop-integrity.js
+          node --check www/controller-nav2.js
+          node --check www/tutorial.js
           node --check tests/coop-runtime.spec.cjs
           node --check tests/coop-runtime-v2.spec.cjs
+          node --check tests/controller-tutorial.spec.cjs
       - name: Instalar navegador de teste
         run: |
           npm install --no-save playwright@1.62.1 --no-audit --no-fund
           npx playwright install --with-deps chromium
       - name: Testar co-op local no navegador
         run: node tests/coop-runtime-v2.spec.cjs www
+      - name: Testar tutorial e navegação por controle
+        run: node tests/controller-tutorial.spec.cjs www
