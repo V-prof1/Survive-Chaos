@@ -13,6 +13,7 @@ on:
       - 'www/controller-nav.css'
       - 'www/tutorial.js'
       - 'www/tutorial.css'
+      - 'www/tutorial-sandbox.js'
       - 'www/index.html'
       - 'tests/coop-runtime.spec.cjs'
       - 'tests/coop-runtime-v2.spec.cjs'
@@ -40,6 +41,7 @@ jobs:
           node --check www/coop-integrity.js
           node --check www/controller-nav2.js
           node --check www/tutorial.js
+          node --check www/tutorial-sandbox.js
           node --check tests/coop-runtime.spec.cjs
           node --check tests/coop-runtime-v2.spec.cjs
           node --check tests/controller-tutorial.spec.cjs
