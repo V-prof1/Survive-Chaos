@@ -15,6 +15,9 @@ on:
       - 'www/tutorial.js'
       - 'www/tutorial.css'
       - 'www/tutorial-sandbox.js'
+      - 'www/guided-tour.js'
+      - 'www/guided-tour.css'
+      - 'www/guided-tour-setup-router.js'
       - 'www/index.html'
       - 'tests/coop-runtime.spec.cjs'
       - 'tests/coop-runtime-v2.spec.cjs'
@@ -44,6 +47,8 @@ jobs:
           node --check www/controller-pause-owner.js
           node --check www/tutorial.js
           node --check www/tutorial-sandbox.js
+          node --check www/guided-tour.js
+          node --check www/guided-tour-setup-router.js
           node --check tests/coop-runtime.spec.cjs
           node --check tests/coop-runtime-v2.spec.cjs
           node --check tests/controller-tutorial.spec.cjs
