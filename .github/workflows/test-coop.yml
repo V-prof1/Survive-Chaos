@@ -18,10 +18,15 @@ on:
       - 'www/guided-tour.js'
       - 'www/guided-tour.css'
       - 'www/guided-tour-setup-router.js'
+      - 'www/tutorial-shame-achievement.js'
+      - 'www/fun-easter-eggs.js'
+      - 'www/admin-organized.js'
+      - 'www/admin-organized.css'
       - 'www/index.html'
       - 'tests/coop-runtime.spec.cjs'
       - 'tests/coop-runtime-v2.spec.cjs'
       - 'tests/controller-tutorial.spec.cjs'
+      - 'tests/fun-admin.spec.cjs'
       - '.github/workflows/test-coop.yml'
 
 permissions:
@@ -49,9 +54,13 @@ jobs:
           node --check www/tutorial-sandbox.js
           node --check www/guided-tour.js
           node --check www/guided-tour-setup-router.js
+          node --check www/tutorial-shame-achievement.js
+          node --check www/fun-easter-eggs.js
+          node --check www/admin-organized.js
           node --check tests/coop-runtime.spec.cjs
           node --check tests/coop-runtime-v2.spec.cjs
           node --check tests/controller-tutorial.spec.cjs
+          node --check tests/fun-admin.spec.cjs
       - name: Instalar navegador de teste
         run: |
           npm install --no-save playwright@1.62.1 --no-audit --no-fund
@@ -60,3 +69,5 @@ jobs:
         run: node tests/coop-runtime-v2.spec.cjs www
       - name: Testar tutorial e navegação por controle
         run: node tests/controller-tutorial.spec.cjs www
+      - name: Testar conquista, easter eggs e Admin organizado
+        run: node tests/fun-admin.spec.cjs www
