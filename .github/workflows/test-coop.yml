@@ -10,6 +10,7 @@ on:
       - 'www/coop-integrity.js'
       - 'www/web-modern-modes.js'
       - 'www/controller-nav2.js'
+      - 'www/controller-pause-owner.js'
       - 'www/controller-nav.css'
       - 'www/tutorial.js'
       - 'www/tutorial.css'
@@ -40,6 +41,7 @@ jobs:
           node --check www/web-modern-modes.js
           node --check www/coop-integrity.js
           node --check www/controller-nav2.js
+          node --check www/controller-pause-owner.js
           node --check www/tutorial.js
           node --check www/tutorial-sandbox.js
           node --check tests/coop-runtime.spec.cjs
