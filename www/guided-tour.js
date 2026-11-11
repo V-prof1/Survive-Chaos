@@ -2,7 +2,7 @@
 /* ©criado por Vitor Ag/Nyx - 2026 */
 /* ©criado por Vitor Ag/Nyx - 2026 */
 /* Survive Chaos — Guided Interface Tour 4.0
-   Mandatory first-run UI walkthrough: SOLO first, then LOCAL CO-OP + ECHO practice. */
+   Optional UI walkthrough: SOLO first, then LOCAL CO-OP + ECHO practice. */
 (()=>{'use strict';
 if(window.__SC_GUIDED_TOUR4__)return;window.__SC_GUIDED_TOUR4__=1;
 const KEY='sc_guided_tutorial_complete_v4',VERSION=4;
@@ -27,7 +27,7 @@ function restore(){try{if(orig?.cf&&typeof CF!=='undefined'){Object.assign(CF,or
 function mount(){if($('#scGuide'))return;const d=document.createElement('div');d.id='scGuide';d.innerHTML='<div id="scGuideSpot"></div><div id="scGuidePanel"><div class="scg-head"><span class="scg-phase" id="scGuidePhase"></span><span class="scg-step" id="scGuideStep"></span><button class="scg-close" id="scGuideClose" aria-label="Fechar tutorial">×</button></div><h2 id="scGuideTitle"></h2><div id="scGuideText"></div><div class="scg-action"><small id="scGuideHint"></small><button class="scg-btn" id="scGuideNext">Entendi</button></div></div><div id="scGuideWrong">Siga o destaque do tutorial</div>';document.body.appendChild(d);$('#scGuideNext').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const s=steps[idx];if(!active||s?.mode!=='confirm')return;advance()});$('#scGuideClose').addEventListener('click',()=>{if(replay)finish(false)});}
 const htmlList=items=>'<div class="scg-list">'+items.map(x=>'<span><b>'+x[0]+'</b>'+x[1]+'</span>').join('')+'</div>';
 const steps=[
-{phase:'INÍCIO',title:'Bem-vindo ao Survive Chaos',text:'Este tutorial usa a <b>interface real do jogo</b>. Primeiro você aprende o <strong>SOLO</strong>; só depois o <strong>CO-OP LOCAL</strong>. Durante as etapas obrigatórias, apenas o botão destacado funciona.',mode:'confirm',target:()=>$('#play'),hint:'Você não pode pular este tutorial na primeira vez.'},
+{phase:'INÍCIO',title:'Bem-vindo ao Survive Chaos',text:'Este tutorial usa a <b>interface real do jogo</b>. Primeiro você aprende o <strong>SOLO</strong>; só depois o <strong>CO-OP LOCAL</strong>. Durante o tutorial, apenas o botão destacado funciona.',mode:'confirm',target:()=>$('#play'),hint:'Você pode sair do tutorial quando quiser.'},
 {phase:'SOLO • MENU',title:'Seu nick',text:'Aqui fica seu nome. No controle, selecionar este campo abre o teclado virtual. No touch/PC, funciona como um campo normal.',mode:'confirm',target:()=>$('#nick'),hint:'Observe o campo destacado.'},
 {phase:'SOLO • MENU',title:'Som',text:'Este botão liga/desliga o áudio. Clique nele uma vez para aprender onde fica. A preferência original é restaurada ao fim do tutorial.',mode:'target',target:()=>$('#snd'),hint:'Clique no botão destacado.'},
 {phase:'SOLO • MENU',title:'Skins',text:'Abra a <b>Loja de Skins</b>. Aqui você equipa aparências e vê o custo das que ainda não possui.',mode:'target',target:()=>$('#shopb'),hint:'Abra Skins.'},
@@ -64,7 +64,7 @@ const steps=[
 {phase:'CO-OP • P2',title:'Controle do P2',text:'Escolha/confirm e o esquema do P2. Combinações como controle+controle, controle+teclado, touch+controle, WASD+setas e touch+touch são suportadas.',mode:'target',target:()=>ctlButton(1,1),hint:'Clique no esquema destacado do P2.'},
 {phase:'CO-OP • REGRAS',title:'Como o Co-op funciona',text:htmlList([['Vida','Cada jogador tem sua própria barra.'],['Câmera','Enquadra a dupla e segue o sobrevivente.'],['Revive','Fique perto do aliado caído por alguns segundos.'],['Objetivos','P1 ou P2 podem cumprir zonas, extrações e caches.'],['Dano','Tiros, burn, vampirismo e torretas mantêm o dono correto.'],['Progressão','XP, nível, upgrades e ULT continuam compartilhados.']]),mode:'confirm',target:()=>section('Jogadores'),hint:'Sem upgrades separados, como você pediu.'},
 {phase:'CO-OP • ECHO',title:'Treino prático com ECHO',text:'Agora o <b>ECHO • BOT</b> entra como P2. Você vai mover, usar Dash, usar ULT, matar um alvo com ele e depois revivê-lo. O treino não entrega recompensa nem altera seu save.',mode:'custom',target:()=>$('#go'),hint:'Clique em Começar para iniciar o treino com ECHO.',custom:()=>startEcho()},
-{phase:'FINAL',title:'Tutorial concluído',text:'Pronto. Você navegou pela interface Solo, configurou uma run, conheceu a HUD e depois configurou o Co-op com P1/P2 e treinou revive com ECHO. O botão <b>🎓 Tutorial</b> no menu permite refazer este tour quando quiser.',mode:'confirm',target:()=>$('#tutorialb'),hint:'Concluir libera o jogo normalmente.',final:true}
+{phase:'FINAL',title:'Tutorial concluído',text:'Pronto. Você navegou pela interface Solo, configurou uma run, conheceu a HUD e depois configurou o Co-op com P1/P2 e treinou revive com ECHO. O botão <b>🎓 Tutorial</b> no menu permite refazer este tour quando quiser.',mode:'confirm',target:()=>$('#tutorialb'),hint:'Você pode jogar normalmente mesmo sem concluir o tutorial.',final:true}
 ];
 function position(){if(!active)return;const s=steps[idx],t=resolveTarget(s);const spot=$('#scGuideSpot'),panel=$('#scGuidePanel');if(!spot||!panel)return;if(t&&vis(t)){const r=t.getBoundingClientRect(),pad=7;spot.style.display='block';spot.style.left=Math.max(4,r.left-pad)+'px';spot.style.top=Math.max(4,r.top-pad)+'px';spot.style.width=Math.min(innerWidth-8,r.width+pad*2)+'px';spot.style.height=Math.min(innerHeight-8,r.height+pad*2)+'px';panel.classList.toggle('top',r.top>innerHeight*.52);panel.classList.toggle('bottom',r.top<=innerHeight*.52);lastTarget=t;try{window.SCControllerNav?.mark?.(t)}catch(_){}}else{spot.style.display='none';panel.classList.add('bottom');panel.classList.remove('top');lastTarget=null}}
 function resolveTarget(s){try{return typeof s?.target==='function'?s.target():null}catch(_){return null}}
@@ -79,6 +79,6 @@ function patchTutorialButton(){const b=$('#tutorialb');if(!b)return false;b.oncl
 document.addEventListener('click',onClick,true);addEventListener('resize',()=>setTimeout(position,30));addEventListener('scroll',()=>setTimeout(position,20),true);
 mount();let n=0;const hook=setInterval(()=>{n++;if(patchTutorialButton()||n>60)clearInterval(hook)},100);
 window.SCGuidedTour={version:'4.0',start,finish,completed,steps:()=>steps.slice(),index:()=>idx,isActive:()=>active};
-setTimeout(()=>{const wasLegacy=legacyDone();if(!completed()&&!wasLegacy)start(false)},320);
+// Tutorial opcional: somente inicia quando o jogador toca no botão do menu.
 console.log('[Tutorial] Guided Solo → Co-op interface tour 4.0 active');
 })();
