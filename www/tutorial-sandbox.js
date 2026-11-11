@@ -10,6 +10,6 @@ document.addEventListener('click',e=>{const b=e.target?.closest?.('#scTutNext');
 function loop(){requestAnimationFrame(loop);const guideEcho=document.documentElement.classList.contains('sc-guide-echo');if(guideEcho&&!wasGuideEcho&&!armed)capture();wasGuideEcho=guideEcho;const on=document.documentElement.classList.contains('sc-tut-practice');if(on)wasActive=true;else if(wasActive&&armed)restore()}requestAnimationFrame(loop);
 window.SCTutorialSandbox={version:'1.1',capture,restore};
 if(!document.querySelector('link[data-sc-guided-tour]')){const l=document.createElement('link');l.rel='stylesheet';l.href='guided-tour.css?v=4';l.dataset.scGuidedTour='1';document.head.appendChild(l)}
-if(!document.querySelector('script[data-sc-guided-tour]')){const s=document.createElement('script');s.src='guided-tour.js?v=4';s.dataset.scGuidedTour='1';document.body.appendChild(s)}
+if(!document.querySelector('script[data-sc-guided-tour]')){const s=document.createElement('script');s.src='guided-tour.js?v=5';s.dataset.scGuidedTour='1';document.body.appendChild(s)}
 if(!document.querySelector('script[data-sc-guide-router]')){const r=document.createElement('script');r.src='guided-tour-setup-router.js?v=1';r.dataset.scGuideRouter='1';document.body.appendChild(r)}
 })();
